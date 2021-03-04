@@ -1,11 +1,10 @@
-.loginBox {
-  padding: 10px;
+.postBox {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#login {
-  height: 40px;
+#post {
+  height: 30px;
   width: 375px;
   margin: 10px;
   border: none;
@@ -13,6 +12,6 @@
   background-color: #7EA172;
   outline: none;
 }
-#login:hover {
+#post:hover {
   cursor: pointer;
 }

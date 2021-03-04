@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+nav {
+  background-color: #7EA172;
+  height: 50px;
+  display: flex;
+  padding: 10px;
+}
+a {
+  color: white;
+  font-family: roboto;
+  text-decoration: none;
+  line-height: 50px;
+  height: 50px;
+  margin: 0px 15px;
+}
