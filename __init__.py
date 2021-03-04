@@ -1,9 +1,9 @@
 from flask import Flask
 
-from .main import index
-from .login.routes import login
-from .register.routes import register
-from .logout.routes import logout
+from main import index
+from login.routes import login
+from register.routes import register
+from logout.routes import logout
 
 def create_app():
     app = Flask(__name__)
