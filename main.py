@@ -9,7 +9,7 @@ Connection = Connection(
     host="127.0.0.1",
     username="Noah721",
     password="Satchel21",
-    databaseName="testdb"
+    databaseName="testdbReal"
 )
 
 def Start():
