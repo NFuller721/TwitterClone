@@ -1,0 +1,18 @@
+.loginBox {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#login {
+  height: 40px;
+  width: 375px;
+  margin: 10px;
+  border: none;
+  color: white;
+  background-color: #7EA172;
+  outline: none;
+}
+#login:hover {
+  cursor: pointer;
+}
