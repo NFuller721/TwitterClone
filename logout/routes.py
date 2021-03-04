@@ -11,8 +11,8 @@ def index():
         session.pop('loggedIn')
         session.pop('username')
         session.pop('password')
+        session.pop('id')
 
         return redirect(url_for('index.indexPage'))
     else:
         return redirect(url_for('index.indexPage'))
-        

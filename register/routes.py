@@ -32,9 +32,8 @@ def index():
                     session['loggedIn'] = "true"
                     session['username'] = request.form['username']
                     session['password'] = request.form['password']
-                    return redirect(url_for('index.indexPage',
-                    loggedIn=('true' if 'loggedIn' in session else 'false'),
-                    username=(session['username'] if 'username' in session else '')))
+                    session['id'] = User[1]
+                    return redirect(url_for('index.indexPage'))
         Create(
             Database=Database,
             Cursor=Cursor,
@@ -44,10 +43,16 @@ def index():
                 'password': request.form['password']
             }
         )
-        session['loggedIn'] = "true"
-        session['username'] = request.form['username']
-        session['password'] = request.form['password']
-        return redirect(url_for('index.indexPage',
-            loggedIn=('true' if 'loggedIn' in session else 'false'),
-            username=(session['username'] if 'username' in session else '')))
-    return render_template('pages/register.html', username=(session['username'] if 'username' in session else ''))
+        Users = Read(
+            Database=Database,
+            Cursor=Cursor,
+            table="Users",
+        )
+        for User in Users:
+            if User[1] == request.form['username'] and User[2] == request.form['password']:
+                session['loggedIn'] = "true"
+                session['username'] = request.form['username']
+                session['password'] = request.form['password']
+                session['id'] = User[0]
+        return redirect(url_for('index.indexPage'))
+    return render_template('pages/register.html')

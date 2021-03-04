@@ -44,15 +44,7 @@ def indexPage():
                         Create(Database=Database, Cursor=Cursor, table="PostData", dict={'PostText': PostText, 'UserID': UserID})
                 else:
                     return redirect(url_for('register.index'))
-            return render_template(
-                'pages/index.html',
-                loggedIn=('true' if 'loggedIn' in session else 'false'),
-                username=(session['username'] if 'username' in session else '')
-            )
+            return render_template('pages/index.html')
 
-
-    return render_template(
-        'pages/index.html',
-        loggedIn=('true' if 'loggedIn' in session else 'false'),
-        username=(session['username'] if 'username' in session else '')
-    )
+    print(session)
+    return render_template('pages/index.html')

@@ -31,6 +31,7 @@ def index():
                     session['loggedIn'] = "true"
                     session['username'] = request.form['username']
                     session['password'] = request.form['password']
+                    session['id'] = User[0]
                     return redirect(url_for('index.indexPage'))
         return redirect(url_for('index.indexPage'))
-    return render_template('pages/login.html', username=(session['username'] if 'username' in session else ''))
+    return render_template('pages/login.html')

@@ -1,13 +1,13 @@
 var navbarRequirements = [
   '/static/css/navbar.css'
 ]
-let navbar = (username="") => {
+let navbar = (username="", userid="") => {
   if (username != "") {
     return `
       <nav>
         <a href="/">Home</a>
         <a href="/logout">Logout</a>
-        <a href="/user/">${username}</a>
+        <a href="/user/${userid}">${username}</a>
       </nav>
     `;
   } else {

@@ -12,7 +12,12 @@ $(document).ready(function() {
 
   body.append(
     `
-      ${(typeof(username) !== 'undefined') ? navbar(username=username) : navbar()}
+      ${
+        (typeof(username) !== 'undefined') &&
+        (typeof(userid) !== 'undefined') ?
+         navbar(username=username, userid=userid) :
+         navbar()
+       }
     `
   )
 
