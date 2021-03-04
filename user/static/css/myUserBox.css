@@ -1,0 +1,15 @@
+.myUserBox {
+
+}
+#Save {
+  height: 40px;
+  width: 375px;
+  margin: 10px;
+  border: none;
+  color: white;
+  background-color: #7EA172;
+  outline: none;
+}
+#Save:hover {
+  cursor: pointer;
+}
