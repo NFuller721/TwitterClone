@@ -7,6 +7,7 @@ let navbar = (username="", userid="") => {
       <nav>
         <a href="/">Home</a>
         <a href="/logout">Logout</a>
+        <a href="/Following">Following</a>
         <a href="/user/${userid}">${username}</a>
       </nav>
     `;

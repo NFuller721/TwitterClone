@@ -31,3 +31,17 @@ label {
   display: flex;
   font-family: arial;
 }
+
+.Follow, .Unfollow {
+  height: 30px;
+  width: 375px;
+  margin: 10px;
+  border: none;
+  color: white;
+  background-color: #7EA172;
+  outline: none;
+}
+
+.Follow:hover, .Unfollow:hover {
+  cursor: pointer;
+}

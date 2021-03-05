@@ -58,32 +58,45 @@ def Api(key):
                 id = request.form['UserID']
                 if 'id' in session:
                     if Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5] is None:
-                        Update(Database=Database, Cursor=Cursor, table="Users", id=session['id'], dict={"following": f"{id}"})
+                        return {"Error": "Not following"}
                     else:
                         Following = Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5]
                         Following = Following.split(',')
 
                         if id in Following:
-                            Following.remove(f"id")
+                            Following.remove(id)
+                            Update(Database=Database, Cursor=Cursor, table="Users", id=session['id'], dict={"following": ','.join(Following)})
+                            return {"Response": "removed"}
+                        else:
+                            return {"Error": "Not following"}
 
-                        Update(Database=Database, Cursor=Cursor, table="Users", id=session['id'], dict={"following": allFollowing})
 
                 return {'Error': 'Not Logged In'}
             if 'Following' in request.form:
                 Database, Cursor = Start()
                 id = request.form['UserID']
-                if 'id' in session:
+                if id == 'All':
                     if Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5] is None:
                         return {"Response": "No"}
                     else:
                         Following = Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5]
                         Following = Following.split(',')
 
-                        if id in Following:
-                            return {"Response": "Yes"}
-                        return {"Response": "No"}
-                    return {"Response": "Other"}
-                return {'Error': 'Not Logged In'}
+                        return {"Response": Following}
+                else:
+                    if 'id' in session:
+                        if Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5] is None:
+                            return {"Response": "No"}
+                        else:
+                            Following = Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5]
+                            Following = Following.split(',')
+
+                            if id in Following:
+                                return {"Response": "Yes"}
+                            return {"Response": "No"}
+                        return {"Response": "Other"}
+                    return {'Error': 'Not Logged In'}
+                return {'Error': 'Something is wrong'}
             return {'Response': 'No response'}
         return {'Response': 'No request'}
     return {'Error': 'Wrong key'}

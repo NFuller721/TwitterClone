@@ -5,7 +5,7 @@ var userBoxRequirements = [
 let userBox = (data, following) => {
   return `
     <div class="UserBox">
-      ${following.Response == "No" ? `<button onclick="Follow('${data.Response[0]}')">Follow</button>` : `<button onclick="Unfollow('${data.Response[0]}')">Unfollow</button>`}
+      ${following.Response == "No" ? `<button class="Follow" onclick="Follow('${data.Response[0]}')">Follow</button>` : `<button class="Unfollow" onclick="Unfollow('${data.Response[0]}')">Unfollow</button>`}
       <label>Name:</label>
       <p class="NameBox">${data.Response[3]}</p>
       <label>Description:</label>

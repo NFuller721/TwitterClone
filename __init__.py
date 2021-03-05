@@ -1,10 +1,11 @@
 from flask import Flask, session
 
-from .main import index
-from .login.routes import login
-from .register.routes import register
-from .logout.routes import logout
-from .user.routes import user
+from main import index
+from login.routes import login
+from register.routes import register
+from logout.routes import logout
+from user.routes import user
+from Following.routes import Following
 
 ## Initialize flask application
 app = Flask(__name__)
@@ -16,6 +17,7 @@ app.register_blueprint(register, url_prefix="/register")
 app.register_blueprint(login, url_prefix="/login")
 app.register_blueprint(logout, url_prefix="/logout")
 app.register_blueprint(user, url_prefix="/user")
+app.register_blueprint(Following, url_prefix="/Following")
 
 @app.context_processor
 def utility_processor():

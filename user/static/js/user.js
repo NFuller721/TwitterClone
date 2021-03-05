@@ -7,7 +7,7 @@ let Follow = (id) => {
   location.reload();
 }
 
-let Follow = (id) => {
+let Unfollow = (id) => {
   $.post("Api/1234567876543", {'Unfollow': 'True', 'UserID': id});
   location.reload();
 }
