@@ -1,3 +1,9 @@
+let Save = () => {
+  $.post("Api/1234567876543", {'Update': 'True', 'Name': $("#Name").val(), 'Description': $("#Description").val()}, (data) => {
+    console.log(data.Response)
+  });
+}
+
 $(document).ready(function() {
   Requirements = [
     './static/js/Modules/myUserBox.js',

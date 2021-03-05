@@ -9,7 +9,7 @@ Connection = Connection(
     host="127.0.0.1",
     username="Noah721",
     password="Satchel21",
-    databaseName="testdbReal"
+    databaseName="TwitterClone"
 )
 
 def Start():
@@ -25,7 +25,8 @@ def Api(Option):
     if request.method == "POST":
         if Option == "Read":
             Resp = Read(Database=Database, Cursor=Cursor, table="PostData")
-            return {'Response': Resp[-10:][::-1]}
+            Users = Read(Database=Database, Cursor=Cursor, table="Users", columns=["username", "id"])
+            return {'Response': {'Posts': Resp[-10:][::-1], 'Users': Users}}
         return {}
     return {}
 

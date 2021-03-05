@@ -1,0 +1,33 @@
+.UserBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  width: 375px;
+  font-family: arial;
+  padding: 5px;
+}
+
+.NameBox {
+  height: 30px;
+  margin: 5px;
+  border: 1px solid #7EA172;
+  width: 375px;
+  padding: 5px;
+  display: flex;
+  font-family: arial;
+  justify-content: center;
+  align-items: center;
+}
+
+.DescriptionBox {
+  height: 60px;
+  margin: 5px;
+  border: 1px solid #7EA172;
+  width: 375px;
+  padding: 5px;
+  display: flex;
+  font-family: arial;
+}

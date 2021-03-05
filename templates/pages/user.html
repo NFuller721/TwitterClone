@@ -1,4 +1,7 @@
 {% extends 'layout/base.html' %}
 {% block head %}
+<script type="text/javascript">
+  var user = "{{user}}";
+</script>
 <script src="{{ url_for('user.static', filename='js/user.js') }}" charset="utf-8" defer></script>
 {% endblock %}

@@ -10,7 +10,7 @@ Connection = Connection(
     host="127.0.0.1",
     username="Noah721",
     password="Satchel21",
-    databaseName="testdbReal"
+    databaseName="TwitterClone"
 )
 
 def Start():
@@ -32,7 +32,7 @@ def index():
                     session['loggedIn'] = "true"
                     session['username'] = request.form['username']
                     session['password'] = request.form['password']
-                    session['id'] = User[1]
+                    session['id'] = User[0]
                     return redirect(url_for('index.indexPage'))
         Create(
             Database=Database,
@@ -54,5 +54,5 @@ def index():
                 session['username'] = request.form['username']
                 session['password'] = request.form['password']
                 session['id'] = User[0]
-        return redirect(url_for('index.indexPage'))
+        return redirect(url_for('user.index', userid=session['id']))
     return render_template('pages/register.html')
