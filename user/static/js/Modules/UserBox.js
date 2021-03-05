@@ -2,10 +2,10 @@ var userBoxRequirements = [
   './static/css/UserBox.css'
 ]
 
-let userBox = (data) => {
+let userBox = (data, following) => {
   return `
     <div class="UserBox">
-      <button onclick="follow('${data.Response[3]}')>Follow</button>"
+      ${following.Response == "No" ? `<button onclick="Follow('${data.Response[0]}')">Follow</button>` : `<button onclick="Unfollow('${data.Response[0]}')">Unfollow</button>`}
       <label>Name:</label>
       <p class="NameBox">${data.Response[3]}</p>
       <label>Description:</label>

@@ -37,15 +37,52 @@ def Api(key):
                 id = request.form['UserID']
 
                 User = Read(Database=Database, Cursor=Cursor, table="Users", id=int(id))[0]
-                print(User)
                 return {'Response': User}
             if 'Follow' in request.form:
+                Database, Cursor = Start()
                 id = request.form['UserID']
-                if 'id' in session
-                    Following = Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5].split(',')
+                if 'id' in session:
+                    if Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5] is None:
+                        Update(Database=Database, Cursor=Cursor, table="Users", id=session['id'], dict={"following": f"{id}"})
+                    else:
+                        Following = Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5]
+                        Following = Following.split(',')
 
-                    print(Following)
+                        allFollowing = ','.join(Following + [f"{id}"])
 
+                        Update(Database=Database, Cursor=Cursor, table="Users", id=session['id'], dict={"following": allFollowing})
+
+                return {'Error': 'Not Logged In'}
+            if 'Unfollow' in request.form:
+                Database, Cursor = Start()
+                id = request.form['UserID']
+                if 'id' in session:
+                    if Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5] is None:
+                        Update(Database=Database, Cursor=Cursor, table="Users", id=session['id'], dict={"following": f"{id}"})
+                    else:
+                        Following = Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5]
+                        Following = Following.split(',')
+
+                        if id in Following:
+                            Following.remove(f"id")
+
+                        Update(Database=Database, Cursor=Cursor, table="Users", id=session['id'], dict={"following": allFollowing})
+
+                return {'Error': 'Not Logged In'}
+            if 'Following' in request.form:
+                Database, Cursor = Start()
+                id = request.form['UserID']
+                if 'id' in session:
+                    if Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5] is None:
+                        return {"Response": "No"}
+                    else:
+                        Following = Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5]
+                        Following = Following.split(',')
+
+                        if id in Following:
+                            return {"Response": "Yes"}
+                        return {"Response": "No"}
+                    return {"Response": "Other"}
                 return {'Error': 'Not Logged In'}
             return {'Response': 'No response'}
         return {'Response': 'No request'}

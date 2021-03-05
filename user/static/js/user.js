@@ -4,6 +4,16 @@ let GetData = () => {
 
 let Follow = (id) => {
   $.post("Api/1234567876543", {'Follow': 'True', 'UserID': id});
+  location.reload();
+}
+
+let Follow = (id) => {
+  $.post("Api/1234567876543", {'Unfollow': 'True', 'UserID': id});
+  location.reload();
+}
+
+let Following = () => {
+  return $.post("Api/1234567876543", {'Following': 'True', 'UserID': user});
 }
 
 $(document).ready(function() {
@@ -18,11 +28,13 @@ $(document).ready(function() {
   var body = $("body");
 
   GetData().done((data) => {
-    body.append(
-      `
-        ${userBox(data)}
-      `
-    )
+    Following().done((following) => {
+      body.append(
+        `
+          ${userBox(data, following)}
+        `
+      )
+    });
   });
 
 
