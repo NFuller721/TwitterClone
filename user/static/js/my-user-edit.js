@@ -1,7 +1,8 @@
 let Save = () => {
   $.post("Api/1234567876543", {'Update': 'True', 'Name': $("#Name").val(), 'Description': $("#Description").val()}, (data) => {
-    console.log(data.Response)
+
   });
+  window.location.href = '/';
 }
 
 $(document).ready(function() {
