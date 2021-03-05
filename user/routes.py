@@ -10,7 +10,7 @@ Connection = Connection(
     host="127.0.0.1",
     username="Noah721",
     password="Satchel21",
-    databaseName="TwitterClone"
+    databaseName="TwitterClone3"
 )
 
 def Start():
@@ -35,8 +35,8 @@ def Api(key):
             if 'Read' in request.form:
                 Database, Cursor = Start()
                 id = request.form['UserID']
-
                 User = Read(Database=Database, Cursor=Cursor, table="Users", id=int(id))[0]
+                Database.close()
                 return {'Response': User}
             if 'Follow' in request.form:
                 Database, Cursor = Start()
@@ -97,6 +97,11 @@ def Api(key):
                         return {"Response": "Other"}
                     return {'Error': 'Not Logged In'}
                 return {'Error': 'Something is wrong'}
+            if 'ReadAll' in request.form:
+                Database, Cursor = Start()
+                Users = Read(Database=Database, Cursor=Cursor, table="Users", columns=["id", "username"])
+                Database.close()
+                return {'Response': Users}
             return {'Response': 'No response'}
         return {'Response': 'No request'}
     return {'Error': 'Wrong key'}
@@ -106,8 +111,14 @@ def Api(key):
 def index(userid):
     if 'id' in session:
         if str(userid) == str(session['id']):
-            if request.method == "POST":
-                return render_template('pages/my-user.html')
-            return render_template('pages/my-user.html')
+            return render_template('pages/my-user.html', user=userid)
         return render_template('pages/user.html', user=userid)
     return render_template('pages/user.html', user=userid)
+
+@user.route('/editUser', methods=["GET", "POST"])
+def edit():
+    if 'id' in session:
+        if request.method == "POST":
+            return render_template('pages/my-user-edit.html')
+        return render_template('pages/my-user-edit.html')
+    return redirect(url_for('index.indexPage'))

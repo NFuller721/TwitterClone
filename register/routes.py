@@ -10,7 +10,7 @@ Connection = Connection(
     host="127.0.0.1",
     username="Noah721",
     password="Satchel21",
-    databaseName="TwitterClone"
+    databaseName="TwitterClone3"
 )
 
 def Start():
@@ -40,7 +40,7 @@ def index():
             table="Users",
             dict={
                 'username': request.form['username'],
-                'password': request.form['password']
+                'password': request.form['password'],
             }
         )
         Users = Read(
@@ -50,6 +50,15 @@ def index():
         )
         for User in Users:
             if User[1] == request.form['username'] and User[2] == request.form['password']:
+                Update(
+                    Database=Database,
+                    Cursor=Cursor,
+                    table="Users",
+                    id=User[0],
+                    dict={
+                        'following': f"{User[0]}"
+                    }
+                )
                 session['loggedIn'] = "true"
                 session['username'] = request.form['username']
                 session['password'] = request.form['password']

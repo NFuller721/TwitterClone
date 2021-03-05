@@ -9,7 +9,7 @@ Connection = Connection(
     host="127.0.0.1",
     username="Noah721",
     password="Satchel21",
-    databaseName="TwitterClone"
+    databaseName="TwitterClone3"
 )
 
 def Start():
@@ -26,8 +26,11 @@ def Api(Option):
         if Option == "Read":
             Resp = Read(Database=Database, Cursor=Cursor, table="PostData")
             Users = Read(Database=Database, Cursor=Cursor, table="Users", columns=["username", "id"])
+            Database.close()
             return {'Response': {'Posts': Resp[::-1], 'Users': Users}}
+        Database.close()
         return {}
+    Database.close()
     return {}
 
 @index.route('/', methods=["GET", "POST"])
@@ -44,8 +47,8 @@ def indexPage():
                         UserID = User[0]
                         Create(Database=Database, Cursor=Cursor, table="PostData", dict={'PostText': PostText, 'UserID': UserID})
                 else:
+                    Database.close()
                     return redirect(url_for('register.index'))
+            Database.close()
             return render_template('pages/index.html')
-
-    print(session)
     return render_template('pages/index.html')

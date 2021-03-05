@@ -1,26 +1,25 @@
-let Save = () => {
-  $.post("Api/1234567876543", {'Update': 'True', 'Name': $("#Name").val(), 'Description': $("#Description").val()}, (data) => {
-    console.log(data.Response)
-  });
+let GetData = () => {
+  return $.post("Api/1234567876543", {'Read': 'True', 'UserID': user});
 }
 
 $(document).ready(function() {
   Requirements = [
-    './static/js/Modules/myUserBox.js',
-    '/static/js/Modules/inputBox.js'
+    './static/js/Modules/UserBox.js'
   ]
   var head = $("head");
 
   Render(head, Requirements)
-  Render(head, myUserBoxRequirements.concat(inputBoxRequirements))
+  Render(head, userBoxRequirements)
 
   var body = $("body");
 
-  body.append(
-    `
-      ${myUserBox(inputBox)}
-    `
-  )
+  GetData().done((data) => {
+    body.append(
+      `
+        ${userBox(data)}
+      `
+    )
+  });
 
 
 });

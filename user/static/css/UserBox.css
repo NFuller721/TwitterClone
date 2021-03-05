@@ -32,7 +32,7 @@ label {
   font-family: arial;
 }
 
-.Follow, .Unfollow {
+.Button {
   height: 30px;
   width: 375px;
   margin: 10px;
@@ -40,8 +40,10 @@ label {
   color: white;
   background-color: #7EA172;
   outline: none;
+  text-align: center;
+  line-height: 30px;
 }
 
-.Follow:hover, .Unfollow:hover {
+.Button:hover {
   cursor: pointer;
 }

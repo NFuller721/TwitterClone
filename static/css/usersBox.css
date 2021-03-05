@@ -1,0 +1,39 @@
+.UsersBox {
+  height: 500px;
+  width: 250px;
+  position: absolute;
+  right: 0;
+  top: calc(50% - 250px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ULink {
+  text-align: center;
+}
+
+.UsersTitle {
+  color: #7EA172;
+  font-family: arial;
+  height: 50px;
+  line-height: 50px;
+  width: 100px;
+  text-align: center;
+  border-bottom: 1px solid #7EA172;
+}
+
+.AllUsers {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (max-width: 900px) {
+  .UsersBox {
+    display: none;
+  }
+}
