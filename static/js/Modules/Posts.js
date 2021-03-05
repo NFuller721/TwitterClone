@@ -37,7 +37,7 @@ var posts = (GetPost, Post, body, following='All') => {
             username = data.Response.Users[j][0]
           }
         }
-        if (following.includes(post[2])) {
+        if (following.includes(post[2].toString())) {
           Posts = Posts.concat(Post(postText=post[1], userid=post[2], username=username));
         }
         if (i+1 == data.Response.Posts.length) {
