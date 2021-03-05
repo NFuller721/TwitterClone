@@ -26,7 +26,7 @@ def Api(Option):
         if Option == "Read":
             Resp = Read(Database=Database, Cursor=Cursor, table="PostData")
             Users = Read(Database=Database, Cursor=Cursor, table="Users", columns=["username", "id"])
-            return {'Response': {'Posts': Resp[-10:][::-1], 'Users': Users}}
+            return {'Response': {'Posts': Resp[::-1], 'Users': Users}}
         return {}
     return {}
 
