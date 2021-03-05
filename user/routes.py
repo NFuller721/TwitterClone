@@ -39,6 +39,14 @@ def Api(key):
                 User = Read(Database=Database, Cursor=Cursor, table="Users", id=int(id))[0]
                 print(User)
                 return {'Response': User}
+            if 'Follow' in request.form:
+                id = request.form['UserID']
+                if 'id' in session
+                    Following = Read(Database=Database, Cursor=Cursor, table="Users", id=session['id'])[0][5].split(',')
+
+                    print(Following)
+
+                return {'Error': 'Not Logged In'}
             return {'Response': 'No response'}
         return {'Response': 'No request'}
     return {'Error': 'Wrong key'}

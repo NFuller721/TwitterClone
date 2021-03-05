@@ -2,6 +2,10 @@ let GetData = () => {
   return $.post("Api/1234567876543", {'Read': 'True', 'UserID': user});
 }
 
+let Follow = (id) => {
+  $.post("Api/1234567876543", {'Follow': 'True', 'UserID': id});
+}
+
 $(document).ready(function() {
   Requirements = [
     './static/js/Modules/UserBox.js'

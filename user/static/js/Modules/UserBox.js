@@ -5,6 +5,7 @@ var userBoxRequirements = [
 let userBox = (data) => {
   return `
     <div class="UserBox">
+      <button onclick="follow('${data.Response[3]}')>Follow</button>"
       <label>Name:</label>
       <p class="NameBox">${data.Response[3]}</p>
       <label>Description:</label>
