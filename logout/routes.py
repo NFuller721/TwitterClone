@@ -9,9 +9,12 @@ logout = Blueprint(
 def index():
     if 'loggedIn' in session:
         session.pop('loggedIn')
-        session.pop('username')
-        session.pop('password')
-        session.pop('id')
+        if 'username' in session:
+            session.pop('username')
+        if 'password' in session:
+            session.pop('password')
+        if 'id' in session:
+            session.pop('id')
 
         return redirect(url_for('index.indexPage'))
     else:

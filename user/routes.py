@@ -46,8 +46,10 @@ def Api(key):
 
 @user.route('/<userid>', methods=["GET", "POST"])
 def index(userid):
-    if str(userid) == str(session['id']):
-        if request.method == "POST":
+    if 'id' in session:
+        if str(userid) == str(session['id']):
+            if request.method == "POST":
+                return render_template('pages/my-user.html')
             return render_template('pages/my-user.html')
-        return render_template('pages/my-user.html')
+        return render_template('pages/user.html', user=userid)
     return render_template('pages/user.html', user=userid)
