@@ -1,11 +1,11 @@
 from flask import Flask, session
 
-from main import index
-from login.routes import login
-from register.routes import register
-from logout.routes import logout
-from user.routes import user
-from Following.routes import Following
+from .main import index
+from .login.routes import login
+from .register.routes import register
+from .logout.routes import logout
+from .user.routes import user
+from .Following.routes import Following
 
 ## Initialize flask application
 app = Flask(__name__)

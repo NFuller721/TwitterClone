@@ -41,13 +41,11 @@ var posts = (GetPost, Post, body, following='All') => {
           Posts = Posts.concat(Post(postText=post[1], userid=post[2], username=username));
         }
         if (i+1 == data.Response.Posts.length) {
-          if (following.includes(userid)) {
-            body.append(`
-              <div class="Posts">
-                ${Posts}
-              </div>
-            `);
-          }
+          body.append(`
+            <div class="Posts">
+              ${Posts}
+            </div>
+          `);
         }
       }
     });
